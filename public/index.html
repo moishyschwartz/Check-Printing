@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Chack Printing </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    
+    <body>
+        <div id="outside" class="outside">
+            <div id="nav" class="nav">
+              <button onclick="ind()" class="ind">Single</button>
+              <button onclick="imp()" class="imp">Import</button>
+            </div>
+            <form id="ind" action="/print" target="_blank">
+                <input type="text" name="payee" id="payee" placeholder="Payee*" required/>
+                <input type="text" name="amouont" id="amount" placeholder="amount*" required/>
+                <input type="text" name="memo" id="memo" placeholder="memo"/>
+                <input class="submit" type="submit" value="submit">
+            </form>
+
+            <form action="/import" id="import">
+                <input type="date" name="startDate">
+                <input type="date" name="endDate">
+                <input class="Submit" type="submit" value="Submit">
+            </form>
+        </div>
+      <script src="/js/js.js"></script>
+    </body>
+</html>

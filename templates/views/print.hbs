@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title> Chack Printing </title>
+  <style>
+    .outside {
+        border: 1px solid black;
+        width: 790px;
+        height: 322px;
+        position: relative;
+    }
+    .date{
+      position: absolute;
+      top:60px;
+      right:25px;
+      width: 110px;
+
+    }
+    .payTo{
+      position: absolute;
+      top: 103px;
+      left: 75px;
+      width: 500px;
+    }
+    .amountWrith{
+      position: absolute;
+      top: 129px;
+      left: 75px;
+      width: 500px;
+    }
+    .amount{
+      position: absolute;
+      top: 106px;
+      right: 22px;
+      width: 110px;
+    }
+    .memo{
+      position: absolute;
+      top: 190px;
+      left: 50px;
+      width: 250px;
+      max-height: 200px;
+    }
+</style>
+
+</head>
+<Body>
+  <div id="outside" class="outside">
+    <div id="date" class="date"> {{date}} </div>
+    <div id="payTo" class="payTo"> {{payee}} </div>
+    <div id="amountWrith" class="amountWrith"> {{amountWriten}}*** </div>
+    <div id="amount" class="amount"> {{amouont}}*** </div>
+    <div id="memo" class="memo"> {{memo}} </div>
+  </div>
+    <script>
+      print()
+      onafterprint = (event) => {
+        close();
+    };
+    </script>
+</Body>
+</html>

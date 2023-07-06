@@ -1,0 +1,42 @@
+.outside {
+    width: 600px;
+    margin: 150px auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.774);
+}
+
+.nav::after{
+    display: table;
+    clear: both;
+    content: "";
+}
+.nav{
+    border: 1px solid #888;
+    border-radius: 10px;
+    overflow: hidden;
+
+
+}
+
+button {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    float: left;
+    height: 30px;
+}
+
+.ind{
+    background-color: #2fca5d;
+}
+
+form {
+    padding: 15px 0;
+}
+
+#import{
+    display: none;
+}
