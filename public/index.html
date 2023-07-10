@@ -7,6 +7,7 @@
     </head>
     
     <body>
+        <h1> Check Printing </h1>
         <div id="outside" class="outside">
             <div id="nav" class="nav">
               <button onclick="ind()" class="ind">Single</button>
@@ -20,11 +21,16 @@
             </form>
 
             <form action="/import" id="import">
-                <input type="date" name="startDate">
-                <input type="date" name="endDate">
+                <input id="startDate" type="date" name="startDate" required>
+                <input id="endDate" type="date" name="endDate" required>
                 <input class="Submit" type="submit" value="Submit">
             </form>
         </div>
+
+        <div id="report" class="report">
+
+        </div>
+
       <script src="/js/js.js"></script>
     </body>
 </html>

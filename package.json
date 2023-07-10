@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.js js,hbs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "capitalize": "^2.0.4",
     "dollars-to-words": "^1.1.1",
     "express": "^4.18.2",
     "hbs": "^4.2.0",
-    "number-currency-format-2": "^1.1.1"
+    "number-currency-format-2": "^1.1.1",
+    "postman-request": "^2.88.1-postman.33"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

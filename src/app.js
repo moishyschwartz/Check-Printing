@@ -3,7 +3,9 @@ const express = require('express')
 const hbs = require('hbs')
 const dollarsToWords = require('dollars-to-words')
 const { format } = require('number-currency-format-2')
+const capitalize = require('capitalize')
 const goodDate = require('./utills/convarters')
+const dataToCheck = require('./utills/import')
 
 const app = express()
 
@@ -28,17 +30,21 @@ app.get('/print', (req, res) => {
         date: goodDate(),
         payee,
         amouont: format(amouont),
-        amountWriten: dollarsToWords(amouont),
+        amountWriten: capitalize.words(dollarsToWords(amouont)),
         memo,
     })
 })
 
 app.get('/import', (req, res) => {
     const {startDate, endDate} = req.query
-    if (startDate > endDate){
+    if (startDate > endDate || startDate == ""){
         return res.send('unspurted')
     }
-    res.send(startDate + endDate)
+    dataToCheck(startDate, endDate, (error, response) => {
+        res.render('import-print',{
+            data:response
+        })
+    })
 
 })
 

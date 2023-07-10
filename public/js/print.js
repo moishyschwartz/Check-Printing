@@ -1,0 +1,4 @@
+print()
+      onafterprint = (event) => {
+      close();
+    };

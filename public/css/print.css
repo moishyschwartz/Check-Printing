@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.outside1 {
+    border: 1px solid rgb(255, 255, 255);
+    width: 856px;
+    height: 344px;
+    position: relative;
+}
+
+.outside {
+    border: 1px solid rgb(255, 255, 255);
+    width: 856px;
+    height: 363px;
+    position: relative;
+}
+.outside1 .date{
+  position: absolute;
+  top: 67px;
+  right:35px;
+  width: 110px;
+
+}
+.outside1 .payTo{
+  position: absolute;
+  top: 113px;
+  left: 90px;
+  width: 500px;
+}
+.outside1 .amountWrith{
+  position: absolute;
+  top: 148px;
+  left: 85px;
+  width: 500px;
+}
+.outside1 .amount{
+  position: absolute;
+  top: 113px;
+  right: 35px;
+  width: 110px;
+}
+.outside1 .memo{
+  position: absolute;
+  top: 197px;
+  left: 50px;
+  width: 250px;
+  max-height: 200px;
+}
+
+.outside .date{
+position: absolute;
+top:89px;
+right:35px;
+width: 110px;
+
+}
+.outside .payTo{
+position: absolute;
+top: 126px;
+left: 90px;
+width: 500px;
+}
+.outside .amountWrith{
+position: absolute;
+top: 164px;
+left: 85px;
+width: 500px;
+}
+.outside .amount{
+position: absolute;
+top: 135px;
+right: 35px;
+width: 110px;
+}
+.outside .memo{
+position: absolute;
+top: 213px;
+left: 50px;
+width: 250px;
+max-height: 200px;
+}
+
+.fill{
+    height: 33px;
+    border-bottom: 1px solid black;
+}
