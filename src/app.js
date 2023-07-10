@@ -40,7 +40,7 @@ app.get('/print', (req, res) => {
 app.get('/import', (req, res) => {
     const {startDate, endDate} = req.query
     if (startDate > endDate || startDate == ""){
-        return res.send('unspurted')
+        return res.send('<p> Error! Make sure that bout dates are filled and the start date are befor the end date <a href = "/"> Back </a> </p>')
     }
     dataToCheck(startDate, endDate, (error, response) => {
         res.render('import-print',{
