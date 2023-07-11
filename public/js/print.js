@@ -1,4 +1,4 @@
 print()
       onafterprint = (event) => {
-      //close();
+      close();
     };
