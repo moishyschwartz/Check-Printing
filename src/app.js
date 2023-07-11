@@ -44,6 +44,9 @@ app.get('/import', (req, res) => {
         return res.send('<p> Error! Make sure that bote dates are filled and the start date are befor the end date <a href = "/"> Back </a> </p>')
     }
     dataToCheck(startDate, endDate, (error, response) => {
+        if (error) {
+            return res.status(400).send(error)
+         }
         res.render('import-print',{
             data:response
         })
@@ -58,6 +61,9 @@ app.get('/report', (req, res) => {
     }
 
     report(startDate, endDate, (error, response) => {
+        if (error) {
+           return res.status(400).send(error)
+        }
         res.render('import-print', {
             data:response
         })

@@ -7,9 +7,11 @@ const goodDate = require('./convarters')
 const dataToCheck = (startDate, endDate, callback) => {
     const url = `https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}/`
     request({url, json:true}, (error, response) => {
-        if (error) {
-            return callback(error)
-        } console.log(response.body)
+        if (error || response.body.success == false || response.body.msg) {
+            return callback('Invalid Dates')
+        } 
+
+
 
         // const response = [
         //   {

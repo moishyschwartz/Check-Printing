@@ -4,7 +4,10 @@ const request = require('postman-request')
 
 const report = (startDate, endDate, callback) => {
   const url = `https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}/`;
-  request({ url, json: true }, (error, response) => {
+  request({ url, json: true }, (error, response) => { 
+    if (error || response.body.success == false || response.body.msg) {
+      return callback('Invalid Dates')
+    } 
     let data = "<div class='outsideReport'>";
     let counter = 1
 
