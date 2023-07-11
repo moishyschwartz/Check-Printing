@@ -86,3 +86,45 @@ max-height: 200px;
     height: 33px;
     border-bottom: 1px solid black;
 }
+
+.outsideReport{
+  margin: 25px;
+}
+
+.row {
+  width: 760px;
+  margin: 1px;
+}
+
+.row:nth-child(even) {
+  background-color: #ccc;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row p {
+  width: 40px;
+  float: left;
+  padding: 2px 25px;
+  margin: 0;
+}
+
+.row .name {
+  width: 175px;
+}
+
+.row .paid {
+  width: 60px;
+}
+
+.count {
+  width: 30px;
+}
+
+@media print {
+  body {print-color-adjust: exact; -webkit-print-color-adjust: exact;}
+  }

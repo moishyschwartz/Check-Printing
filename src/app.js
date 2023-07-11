@@ -6,6 +6,7 @@ const { format } = require('number-currency-format-2')
 const capitalize = require('capitalize')
 const goodDate = require('./utills/convarters')
 const dataToCheck = require('./utills/import')
+const report = require('./utills/report')
 
 const app = express()
 
@@ -40,7 +41,7 @@ app.get('/print', (req, res) => {
 app.get('/import', (req, res) => {
     const {startDate, endDate} = req.query
     if (startDate > endDate || startDate == ""){
-        return res.send('<p> Error! Make sure that bout dates are filled and the start date are befor the end date <a href = "/"> Back </a> </p>')
+        return res.send('<p> Error! Make sure that bote dates are filled and the start date are befor the end date <a href = "/"> Back </a> </p>')
     }
     dataToCheck(startDate, endDate, (error, response) => {
         res.render('import-print',{
@@ -48,6 +49,19 @@ app.get('/import', (req, res) => {
         })
     })
 
+})
+
+app.get('/report', (req, res) => {
+    const {startDate, endDate} = req.query
+    if (startDate > endDate || startDate == ""){
+        return res.send('<p> Error! Make sure that bote dates are filled and the start date are befor the end date <a href = "/"> Back </a> </p>')
+    }
+
+    report(startDate, endDate, (error, response) => {
+        res.render('import-print', {
+            data:response
+        })
+    })
 })
 
 app.get('/*', (req, res) => {

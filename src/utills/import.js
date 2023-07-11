@@ -5,7 +5,7 @@ const capitalize = require('capitalize')
 const goodDate = require('./convarters')
 
 const dataToCheck = (startDate, endDate, callback) => {
-    const url = 'https://kollelsys.com/admin/reports/half/load?date_from='+ startDate +'&date_to=' + endDate
+    const url = `https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}/`
     request({url, json:true}, (error, response) => {
         if (error) {
             return callback(error)
@@ -42,7 +42,8 @@ const dataToCheck = (startDate, endDate, callback) => {
         let data = ''
         let counter = 0
         let clas = ""
-        response.forEach(element => {
+        let memo = ""
+        response.body.half_hour.forEach(element => {
             const {first_name, last_name, TimesMorning, TimesAfternoon} = element
             const amount = TimesMorning*20 + TimesAfternoon*10
             if (counter == 0) {
@@ -50,6 +51,13 @@ const dataToCheck = (startDate, endDate, callback) => {
             } else {
               clas = 'outside'
             }
+
+            if (element.TimesMorning != "") {
+               memo = `Morning ${TimesMorning} Days`
+            } else if (element.TimesAfternoon != "") {
+               memo = `Afternone ${TimesAfternoon} Days`
+            }
+            
             
             data += 
             `<div id="outside" class="${clas}">
@@ -57,7 +65,7 @@ const dataToCheck = (startDate, endDate, callback) => {
             <div id="payTo" class="payTo"> ${first_name} ${last_name} </div>
             <div id="amountWrith" class="amountWrith"> ${capitalize.words(dollarsToWords(amount))}*** </div>
             <div id="amount" class="amount"> ${format(amount)}*** </div>
-            <div id="memo" class="memo"> Morning ${TimesMorning} Days <br> Afternone ${TimesAfternoon} Days  </div>
+            <div id="memo" class="memo"> ${memo}  </div>
           </div>`
           if (counter < 2){
             counter++

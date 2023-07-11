@@ -30,6 +30,42 @@ const imp = () => {
      
 }
 
+const report = () => {
+    const startDate = document.querySelector('#startDate').value
+    const endDate = document.querySelector('#endDate').value
+    window.open(`/report?startDate=${startDate}&endDate=${endDate}`);
+}
+
+const checkData = () => {
+    const startDate = document.querySelector('#startDate').value
+    const endDate = document.querySelector('#endDate').value
+    const formitug = document.querySelector('#formitug')
+    const nuchmitug = document.querySelector('#Nuchmitug')
+    const amount = document.querySelector('#amount')
+    const totalFormitug = 0
+    const totalNuchmitug = 0
+    const totalAmount = 0
+
+    fetch(`https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}`).then((respons) => {
+        respons.json().then((data) => {
+            if (data.success == false ) {return}
+
+            data.forEach(element => {
+                totalFormitug += Number(element.TimesMorning)
+                totalNuchmitug += Number(element.TimesAfternoon)
+            });
+
+            document.querySelector('#data').style.display = 'block'
+            formitug.innerHTML = totalFormitug
+            nuchmitug.innerHTML = totalNuchmitug
+
+
+
+        })
+    })
+
+}
+
 // importForm.addEventListener('submit', (e) => {
 //     e.preventDefault()
 

@@ -20,10 +20,16 @@
                 <input class="submit" type="submit" value="submit">
             </form>
 
-            <form action="/import" id="import">
-                <input id="startDate" type="date" name="startDate" required>
-                <input id="endDate" type="date" name="endDate" required>
-                <input class="Submit" type="submit" value="Submit">
+            <form action="/import" id="import" target="_blank">
+                <input id="startDate" type="date" name="startDate" oninput="checkData()" required>
+                <input id="endDate" type="date" name="endDate" oninput="checkData()" required>
+                <div id="data" class="data">
+                    <p>Total Formitug <span id="formitug"> </span></p>
+                    <p>Total Nuchmitug <span id="Nuchmitug"> </span></p>
+                    <p>Total Amount $<span id="amount"> </span></p>
+                </div>
+                <button> Print Checks </button>
+                <button type="button" onclick="report()"> Print Report </button>
             </form>
         </div>
 

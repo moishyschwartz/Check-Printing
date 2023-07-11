@@ -1,3 +1,4 @@
+* {box-sizing: border-box;}
 h1 {
     width: 600px;
     margin: 60px auto;
@@ -29,7 +30,7 @@ h1 {
 
 }
 
-button {
+.nav button {
     width: 50%;
     margin: 0;
     padding: 0;
@@ -55,4 +56,34 @@ form {
 input{
     padding: 5px;
     border: 1px solid #ccc;
+}
+
+.data p {
+    float: left;
+    width: 33.3%;
+}
+
+.data::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+form button {
+    border: none;
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    margin-top: 15px;
+}
+
+form button:hover {
+    background-color: white;
+    color: #333;
+    border: 2px solid #333;
+    padding: 6px 14px;
+}
+
+.data {
+    display: none;
 }
