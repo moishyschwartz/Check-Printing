@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Chack Printing </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
-    
-    <body>
-        <h1> Check Printing </h1>
-        <div id="outside" class="outside">
-            <div id="nav" class="nav">
-              <button onclick="ind()" class="ind">Single</button>
-              <button onclick="imp()" class="imp">Import</button>
-            </div>
-            <form id="ind" action="/print" target="_blank">
-                <input type="text" name="payee" id="payee" placeholder="Payee*" required/>
-                <input type="text" name="amouont" id="amount" placeholder="amount*" required/>
-                <input type="text" name="memo" id="memo" placeholder="memo"/>
-                <input class="submit" type="submit" value="submit">
-            </form>
 
-            <form action="/import" id="import" target="_blank">
-                <input id="startDate" type="date" name="startDate" oninput="checkData()" required>
-                <input id="endDate" type="date" name="endDate" oninput="checkData()" required>
-                <div id="data" class="data">
-                    <p>Total Formitug <span id="formitug"> </span></p>
-                    <p>Total Nuchmitug <span id="Nuchmitug"> </span></p>
-                    <p>Total Amount $<span id="amount"> </span></p>
+<head>
+    <title> Chack Printing </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <h1> Check Printing </h1>
+    <div id="outside" class="outside">
+        <div id="nav" class="nav">
+            <button onclick="ind()" class="ind">Single</button>
+            <button onclick="imp()" class="imp">Import</button>
+        </div>
+        <form id="ind" action="/print" target="_blank">
+            <input type="text" name="payee" id="payee" placeholder="Payee*" required />
+            <input type="text" name="amouont" id="amount" placeholder="amount*" required />
+            <input type="text" name="memo" id="memo" placeholder="memo" />
+            <input class="submit" type="submit" value="submit">
+        </form>
+
+        <form action="/import" id="import" target="_blank">
+            <input id="startDate" type="date" name="startDate" oninput="checkData()" placeholder="From " required>
+            <input id="endDate" type="date" name="endDate" oninput="checkData()" placeholder="Till " required>
+            <div id="data" class="data">
+                <div class="totals">
+                    <p>Total Checks: <span id="checks"> </span></p>
+                    <p>Total Amount:<span id="totalAmount"> </span></p>
                 </div>
                 <button> Print Checks </button>
                 <button type="button" onclick="report()"> Print Report </button>
-            </form>
-        </div>
+            </div>
+        
+        </form>
+    </div>
 
-        <div id="report" class="report">
+    <div id="report" class="report">
 
-        </div>
+    </div>
 
-      <script src="/js/js.js"></script>
-    </body>
+    <script src="/js/js.js"></script>
+</body>
+
 </html>
