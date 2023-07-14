@@ -4,7 +4,7 @@ const hbs = require('hbs')
 const dollarsToWords = require('dollars-to-words')
 const { format } = require('number-currency-format-2')
 const capitalize = require('capitalize')
-const goodDate = require('./utills/convarters')
+const {goodDate} = require('./utills/convarters')
 const dataToCheck = require('./utills/import')
 const report = require('./utills/report')
 
@@ -48,6 +48,7 @@ app.get('/import', (req, res) => {
             return res.status(400).send(error)
          }
         res.render('import-print',{
+            alert: `alert('Make sure printer setings are set to margins none')`,
             data:response
         })
     })

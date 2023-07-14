@@ -48,6 +48,7 @@ body {
   width: 250px;
   max-height: 200px;
   font-size: 12px;
+  text-align: center;
 }
 
 .outside .date{
@@ -82,6 +83,7 @@ left: 50px;
 width: 250px;
 max-height: 200px;
 font-size: 12px;
+text-align: center;
 }
 
 .fill{
@@ -91,6 +93,19 @@ font-size: 12px;
 
 .outsideReport{
   margin: 25px;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  margin: 1px;
+  border-right: 5px solid black;
+}
+
+.header::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .row {
@@ -113,10 +128,12 @@ font-size: 12px;
   float: left;
   padding: 2px 25px;
   margin: 0;
+  text-align: center;
 }
 
 .row .name {
   width: 175px;
+  text-align: left;
 }
 
 .row .paid {

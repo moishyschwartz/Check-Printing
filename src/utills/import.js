@@ -1,86 +1,68 @@
-const request = require('postman-request')
-const dollarsToWords = require('dollars-to-words')
-const { format } = require('number-currency-format-2')
-const capitalize = require('capitalize')
-const goodDate = require('./convarters')
+const request = require("postman-request");
+const dollarsToWords = require("dollars-to-words");
+const { format } = require("number-currency-format-2");
+const capitalize = require("capitalize");
+const {goodDate, margeArr} = require("./convarters");
+const { toJewishDate, formatJewishDateInHebrew } = require("jewish-date");
 
 const dataToCheck = (startDate, endDate, callback) => {
-    const url = `https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}/`
-    request({url, json:true}, (error, response) => {
-        if (error || response.body.success == false || response.body.msg) {
-            return callback('Invalid Dates')
-        } 
+  const a = new Date(startDate);
+  a.setDate(a.getDate() + 1);
+  const b = new Date(endDate);
+  b.setDate(b.getDate() + 1);
+  const jewishStartDate = toJewishDate(a);
+  const jewishEndDate = toJewishDate(new Date(b));
+  const url = `https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}/`;
+  request({ url, json: true }, (error, response) => {
+    if (error || response.body.success == false || response.body.msg) {
+      return callback("Invalid Dates");
+    }
 
-
-
-        // const response = [
-        //   {
-        //     first_name: "fghj",
-        //     last_name: "fgh",
-        //     TimesMorning: 2,
-        //     TimesAfternoon: 3,
-        //   },
-        //   {
-        //     first_name: "fghj",
-        //     last_name: "fgh",
-        //     TimesMorning: 2,
-        //     TimesAfternoon: 3,
-        //   },
-        //   {
-        //     first_name: "fghj",
-        //     last_name: "fgh",
-        //     TimesMorning: 8,
-        //     TimesAfternoon: 5,
-        //   },
-        //   {
-        //     first_name: "fghj",
-        //     last_name: "fgh",
-        //     TimesMorning: 2,
-        //     TimesAfternoon: 3,
-        //   }
-        // ];
-
-
-        let data = ''
-        let counter = 0
-        let clas = ""
-        let memo = ""
-        response.body.half_hour.forEach(element => {
-            const {first_name, last_name, TimesMorning, TimesAfternoon} = element
-            const amount = TimesMorning*20 + TimesAfternoon*10
-            if (counter == 0) {
-              clas = 'outside1'
-            } else {
-              clas = 'outside'
-            }
-
-            if (element.TimesMorning != "") {
-               memo = `Morning ${TimesMorning} Days`
-            } else if (element.TimesAfternoon != "") {
-               memo = `Afternone ${TimesAfternoon} Days`
-            }
-            
-            
-            data += 
-            `<div id="outside" class="${clas}">
+    let data = "";
+    let counter = 0;
+    let clas = "";
+    let memo = "";
+    const marged = margeArr(response.body.half_hour); //new
+    marged.sort((a, b) => {
+      if (a.last_name < b.last_name) {
+        return -1;
+      } else if (a.last_name > b.last_name) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    marged.forEach((element) => {
+      const { first_name, last_name, TimesMorning, TimesAfternoon } = element;
+      const amount = TimesMorning * 20 + TimesAfternoon * 10;
+      if (counter == 0) {
+        clas = "outside1";
+      } else {
+        clas = "outside";
+      }
+      
+      data += `<div id="outside" class="${clas}">
             <div id="date" class="date"> ${goodDate()} </div>
             <div id="payTo" class="payTo"> ${first_name} ${last_name} </div>
-            <div id="amountWrith" class="amountWrith"> ${capitalize.words(dollarsToWords(amount))}*** </div>
+            <div id="amountWrith" class="amountWrith"> ${capitalize.words(
+              dollarsToWords(amount)
+            )}*** </div>
             <div id="amount" class="amount"> ${format(amount)}*** </div>
-            <div id="memo" class="memo"> ${memo}  </div>
-          </div>`
-          if (counter < 2){
-            counter++
-          } else {
-            counter = 0
-            data += '<div class= "fill" >  </div>'
-          } 
-          
-
-        
-        });
-        callback(undefined, data)
-    })
-}
-
-module.exports = dataToCheck
+            <div id="memo" class="memo"> ${formatJewishDateInHebrew(
+              jewishStartDate
+            )} - ${formatJewishDateInHebrew(
+        jewishEndDate
+      )} <br/>  פארמיטאג ${Number(TimesMorning)}  ${TimesMorning == 1 ?  "סדר" : "סדרים"}  <br/> נאכמיטאג ${Number(TimesAfternoon)} ${TimesAfternoon == 1 ?  "סדר" : "סדרים"}</div>
+          </div>`;
+      if (counter < 2) {
+        counter++;
+      } else {
+        counter = 0;
+        data += '<div class= "fill" >  </div>';
+      }
+    });
+    callback(undefined, data);
+  });
+};
+dataToCheck("2023-07-10", "2023-07-20", () => {});
+module.exports = dataToCheck;
