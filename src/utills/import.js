@@ -22,16 +22,7 @@ const dataToCheck = (startDate, endDate, callback) => {
     let counter = 0;
     let clas = "";
     let memo = "";
-    const marged = margeArr(response.body.half_hour); //new
-    marged.sort((a, b) => {
-      if (a.last_name < b.last_name) {
-        return -1;
-      } else if (a.last_name > b.last_name) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    const marged = margeArr(response.body.half_hour);
     marged.forEach((element) => {
       const { first_name, last_name, TimesMorning, TimesAfternoon } = element;
       const amount = TimesMorning * 20 + TimesAfternoon * 10;
