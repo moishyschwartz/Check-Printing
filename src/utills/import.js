@@ -7,9 +7,9 @@ const { toJewishDate, formatJewishDateInHebrew } = require("jewish-date");
 
 const dataToCheck = (startDate, endDate, callback) => {
   const a = new Date(startDate);
-  a.setDate(a.getDate() + 1);
+  a.setDate(a.getDate());
   const b = new Date(endDate);
-  b.setDate(b.getDate() + 1);
+  b.setDate(b.getDate());
   const jewishStartDate = toJewishDate(a);
   const jewishEndDate = toJewishDate(new Date(b));
   const url = `https://kollelsys.com/api/half/hour/61441012/${startDate}/${endDate}/`;
